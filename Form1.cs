@@ -14,8 +14,6 @@ namespace SixthLabWorkApp
     {
         const int PARTICLE_COUNT = 500;
 
-        //int functionCallsCounter = 0;
-
         List<Particle> particles = new List<Particle>();
 
         public Form1()
@@ -37,8 +35,6 @@ namespace SixthLabWorkApp
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //functionCallsCounter++;
-
             UpdateState();
 
             using (Graphics g = Graphics.FromImage(picDisplay.Image))
@@ -46,17 +42,6 @@ namespace SixthLabWorkApp
                 g.Clear(Color.White);
 
                 Render(g);
-
-                //g.DrawString(
-                //    functionCallsCounter.ToString(),
-                //    new Font("Arial", 12),
-                //    new SolidBrush(Color.Black),
-                //    new PointF
-                //    {
-                //        X = picDisplay.Image.Width / 2,
-                //        Y = picDisplay.Image.Height / 2
-                //    }
-                //);
             }
 
             picDisplay.Invalidate();
