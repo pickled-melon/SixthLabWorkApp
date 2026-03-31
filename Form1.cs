@@ -12,9 +12,12 @@ namespace SixthLabWorkApp
 {
     public partial class Form1 : Form
     {
-        const int PARTICLE_COUNT = 500;
+        const int PARTICLE_COUNT = 0;
 
         List<Particle> particles = new List<Particle>();
+
+        private int MousePositionX = 0;
+        private int MousePositionY = 0;
 
         public Form1()
         {
@@ -39,7 +42,7 @@ namespace SixthLabWorkApp
 
             using (Graphics g = Graphics.FromImage(picDisplay.Image))
             {
-                g.Clear(Color.White);
+                g.Clear(Color.Black);
 
                 Render(g);
             }
@@ -51,10 +54,46 @@ namespace SixthLabWorkApp
         {
             foreach (var particle in particles)
             {
-                var directionInRadians = particle.Direction / 180 * Math.PI;
+                particle.Life -= 1;
 
-                particle.X += (float)(particle.Speed * Math.Cos(directionInRadians));
-                particle.Y -= (float)(particle.Speed * Math.Sin(directionInRadians));
+                if (particle.Life < 0)
+                {
+                    particle.Life = 20 + Particle.rand.Next(100);
+
+                    particle.X = MousePositionX;
+                    particle.Y = MousePositionY;
+
+                    particle.Direction = Particle.rand.Next(360);
+                    particle.Speed = 1 + Particle.rand.Next(10);
+                    particle.Radius = 2 + Particle.rand.Next(10);
+                }
+                else
+                {
+                    var directionInRadians = particle.Direction / 180 * Math.PI;
+
+                    particle.X += (float)(particle.Speed * Math.Cos(directionInRadians));
+                    particle.Y -= (float)(particle.Speed * Math.Sin(directionInRadians));
+                }
+            }
+
+            for (int i=0; i < 10; i++)
+            {
+                if (particles.Count < 500)
+                {
+                    var particle = new ParticleColorful();
+
+                    particle.FromColor = Color.Yellow;
+                    particle.ToColor = Color.FromArgb(0, Color.Magenta);
+
+                    particle.X = MousePositionX;
+                    particle.Y = MousePositionY;
+
+                    particles.Add(particle);
+                }
+                else
+                {
+                    break;
+                }
             }
         }
 
@@ -65,6 +104,12 @@ namespace SixthLabWorkApp
                 var directionInRadians = particle.Direction / 180 * Math.PI;
                 particle.Draw(g);
             }
+        }
+
+        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
+        {
+            MousePositionX = e.X;
+            MousePositionY = e.Y;
         }
     }
 }

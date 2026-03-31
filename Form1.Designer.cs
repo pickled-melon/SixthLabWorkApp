@@ -36,14 +36,13 @@
             // 
             // picDisplay
             // 
-            this.picDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.picDisplay.Location = new System.Drawing.Point(12, 12);
+            this.picDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picDisplay.Location = new System.Drawing.Point(0, 0);
             this.picDisplay.Name = "picDisplay";
-            this.picDisplay.Size = new System.Drawing.Size(776, 426);
+            this.picDisplay.Size = new System.Drawing.Size(800, 450);
             this.picDisplay.TabIndex = 0;
             this.picDisplay.TabStop = false;
+            this.picDisplay.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picDisplay_MouseMove);
             // 
             // timer1
             // 
