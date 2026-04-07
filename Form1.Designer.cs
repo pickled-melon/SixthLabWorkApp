@@ -31,12 +31,15 @@
             this.components = new System.ComponentModel.Container();
             this.picDisplay = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tbDirection = new System.Windows.Forms.TrackBar();
+            this.lblDirPurpose = new System.Windows.Forms.Label();
+            this.lblDirection = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
             this.SuspendLayout();
             // 
             // picDisplay
             // 
-            this.picDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picDisplay.Location = new System.Drawing.Point(0, 0);
             this.picDisplay.Name = "picDisplay";
             this.picDisplay.Size = new System.Drawing.Size(800, 450);
@@ -50,16 +53,49 @@
             this.timer1.Interval = 40;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // tbDirection
+            // 
+            this.tbDirection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tbDirection.Location = new System.Drawing.Point(12, 500);
+            this.tbDirection.Maximum = 359;
+            this.tbDirection.Name = "tbDirection";
+            this.tbDirection.Size = new System.Drawing.Size(189, 56);
+            this.tbDirection.TabIndex = 1;
+            this.tbDirection.Scroll += new System.EventHandler(this.tbDirection_Scroll);
+            // 
+            // lblDirPurpose
+            // 
+            this.lblDirPurpose.AutoSize = true;
+            this.lblDirPurpose.Location = new System.Drawing.Point(12, 481);
+            this.lblDirPurpose.Name = "lblDirPurpose";
+            this.lblDirPurpose.Size = new System.Drawing.Size(97, 16);
+            this.lblDirPurpose.TabIndex = 2;
+            this.lblDirPurpose.Text = "Направление";
+            // 
+            // lblDirection
+            // 
+            this.lblDirection.AutoSize = true;
+            this.lblDirection.Location = new System.Drawing.Point(207, 500);
+            this.lblDirection.Name = "lblDirection";
+            this.lblDirection.Size = new System.Drawing.Size(14, 16);
+            this.lblDirection.TabIndex = 3;
+            this.lblDirection.Text = "0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 568);
+            this.Controls.Add(this.lblDirection);
+            this.Controls.Add(this.lblDirPurpose);
+            this.Controls.Add(this.tbDirection);
             this.Controls.Add(this.picDisplay);
             this.Name = "Form1";
             this.Text = "Обработка событий";
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -67,6 +103,9 @@
 
         private System.Windows.Forms.PictureBox picDisplay;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TrackBar tbDirection;
+        private System.Windows.Forms.Label lblDirPurpose;
+        private System.Windows.Forms.Label lblDirection;
     }
 }
 

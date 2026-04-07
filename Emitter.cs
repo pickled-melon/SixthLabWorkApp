@@ -13,6 +13,27 @@ namespace SixthLabWorkApp
 
         public List<IImpactPoint> gravityPoints = new List<IImpactPoint>();
 
+        //TODO: Управляем эмттером
+        public int X;
+        public int Y;
+        
+        public int Direction = 0;
+        public int Spreading = 360;
+        
+        public int SpeedMin = 1;
+        public int SpeedMax = 10;
+
+        public int RadiusMin = 2;
+        public int RadiusMax = 10;
+        
+        public int LifeMin = 20;
+        public int LifeMax = 100;
+
+        public Color ColorFrom = Color.White;
+        public Color ColorTo = Color.FromArgb(0, Color.Black);
+
+        public int ParticlesPerTick = 1;
+
         public int ParticlesCount = 500;
 
         public int MousePositionX;
@@ -21,15 +42,31 @@ namespace SixthLabWorkApp
         public float GravitationX = 0;
         public float GravitationY = 0;
 
+        public virtual Particle CreateParticle()
+        {
+            var particle = new ParticleColorful();
+
+            particle.FromColor = ColorFrom;
+            particle.ToColor = ColorTo;
+
+            return particle;
+        }
+
         public void UpdateState()
         {
+            int particlesToCreate = ParticlesPerTick;
+
             foreach (var particle in particles)
             {
                 particle.Life -= 1;
 
-                if (particle.Life < 0)
+                if (particle.Life <= 0)
                 {
-                    ResetParticle(particle);
+                    if (particlesToCreate > 0)
+                    {
+                        particlesToCreate -= 1;
+                        ResetParticle(particle);
+                    }
                 }
                 else
                 {
@@ -46,23 +83,15 @@ namespace SixthLabWorkApp
                 }
             }
 
-            for (int i = 0; i < 10; i++)
+            while (particlesToCreate >= 1)
             {
-                if (particles.Count < ParticlesCount)
-                {
-                    var particle = new ParticleColorful();
+                particlesToCreate -= 1;
 
-                    particle.FromColor = Color.White;
-                    particle.ToColor = Color.Gray;
+                var particle = CreateParticle();
 
-                    ResetParticle(particle);
-
-                    particles.Add(particle);
-                }
-                else
-                {
-                    break;
-                }
+                ResetParticle(particle);
+                
+                particles.Add(particle);
             }
         }
 
@@ -81,18 +110,19 @@ namespace SixthLabWorkApp
 
         public virtual void ResetParticle(Particle particle)
         {
-            particle.Life = 20 + Particle.rand.Next(100);
+            particle.Life = Particle.rand.Next(LifeMin, LifeMax);
 
-            particle.X = MousePositionX;
-            particle.Y = MousePositionY;
+            particle.X = X;
+            particle.Y = Y;
 
-            var direction = (double)Particle.rand.Next(360);
-            var speed = 1 + Particle.rand.Next(10);
+            var direction = Direction + (double) Particle.rand.Next(Spreading) - Spreading / 2;
+
+            var speed = Particle.rand.Next(SpeedMin, SpeedMax);
 
             particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
             particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
 
-            particle.Radius = 2 + Particle.rand.Next(10);
+            particle.Radius = Particle.rand.Next(RadiusMin, RadiusMax);
         }
     }
 }
