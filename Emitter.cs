@@ -62,25 +62,20 @@ namespace SixthLabWorkApp
 
                 if (particle.Life <= 0)
                 {
-                    if (particlesToCreate > 0)
-                    {
-                        particlesToCreate -= 1;
-                        ResetParticle(particle);
-                    }
+                    ResetParticle(particle);
+                    continue;
                 }
-                else
+                
+                foreach (var point in gravityPoints)
                 {
-                    foreach (var point in gravityPoints)
-                    {
-                        point.ImpactParticle(particle);
-                    }
-
-                    particle.SpeedX += GravitationX;
-                    particle.SpeedY += GravitationY;
-
-                    particle.X += particle.SpeedX;
-                    particle.Y += particle.SpeedY;
+                    point.ImpactParticle(particle);
                 }
+
+                particle.SpeedX += GravitationX;
+                particle.SpeedY += GravitationY;
+
+                particle.X += particle.SpeedX;
+                particle.Y += particle.SpeedY;
             }
 
             while (particlesToCreate >= 1)

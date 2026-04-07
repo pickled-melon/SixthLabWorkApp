@@ -51,12 +51,20 @@ namespace SixthLabWorkApp
 
         public static Color MixColor(Color color1, Color color2, float k)
         {
-            return Color.FromArgb(
-                (int)(color2.A * k + color1.A * (1 - k) % 255),
-                (int)(color2.R * k + color1.R * (1 - k) % 255),
-                (int)(color2.G * k + color1.G * (1 - k) % 255),
-                (int)(color2.B * k + color1.B * (1 - k) % 255)
-            );
+            if (k < 0) k = 0;
+            if (k > 1) k = 1;
+
+            int a = (int)(color2.A * k + color1.A * (1 - k));
+            int r = (int)(color2.R * k + color1.R * (1 - k));
+            int g = (int)(color2.G * k + color1.G * (1 - k));
+            int b = (int)(color2.B * k + color1.B * (1 - k));
+
+            a = a < 0 ? 0 : (a > 255 ? 255 : a);
+            r = r < 0 ? 0 : (r > 255 ? 255 : r);
+            g = g < 0 ? 0 : (g > 255 ? 255 : g);
+            b = b < 0 ? 0 : (b > 255 ? 255 : b);
+
+            return Color.FromArgb(a, r, g, b);
         }
 
         public override void Draw(Graphics g)
