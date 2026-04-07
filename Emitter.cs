@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace SixthLabWorkApp
 {
-    class Emitter
+    public class Emitter
     {
         List<Particle> particles = new List<Particle>();
 
         public List<IImpactPoint> gravityPoints = new List<IImpactPoint>();
+
+        public int ParticlesCount = 500;
 
         public int MousePositionX;
         public int MousePositionY;
@@ -27,18 +29,7 @@ namespace SixthLabWorkApp
 
                 if (particle.Life < 0)
                 {
-                    particle.Life = 20 + Particle.rand.Next(100);
-
-                    particle.X = MousePositionX;
-                    particle.Y = MousePositionY;
-
-                    var direction = (double)Particle.rand.Next(360);
-                    var speed = 1 + Particle.rand.Next(10);
-
-                    particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
-                    particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
-
-                    particle.Radius = 2 + Particle.rand.Next(10);
+                    ResetParticle(particle);
                 }
                 else
                 {
@@ -57,15 +48,14 @@ namespace SixthLabWorkApp
 
             for (int i = 0; i < 10; i++)
             {
-                if (particles.Count < 500)
+                if (particles.Count < ParticlesCount)
                 {
                     var particle = new ParticleColorful();
 
-                    particle.FromColor = Color.Yellow;
-                    particle.ToColor = Color.FromArgb(0, Color.Magenta);
+                    particle.FromColor = Color.White;
+                    particle.ToColor = Color.Gray;
 
-                    particle.X = MousePositionX;
-                    particle.Y = MousePositionY;
+                    ResetParticle(particle);
 
                     particles.Add(particle);
                 }
@@ -87,6 +77,22 @@ namespace SixthLabWorkApp
             {
                 point.Render(g);
             }
+        }
+
+        public virtual void ResetParticle(Particle particle)
+        {
+            particle.Life = 20 + Particle.rand.Next(100);
+
+            particle.X = MousePositionX;
+            particle.Y = MousePositionY;
+
+            var direction = (double)Particle.rand.Next(360);
+            var speed = 1 + Particle.rand.Next(10);
+
+            particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
+            particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
+
+            particle.Radius = 2 + Particle.rand.Next(10);
         }
     }
 }
