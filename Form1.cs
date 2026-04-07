@@ -37,6 +37,20 @@ namespace SixthLabWorkApp
 
 
             emitters.Add(this.emitter);
+
+            emitter.gravityPoints.Add(
+                new GravityPoint
+                {
+                    X = picDisplay.Width / 2 + 100,
+                    Y = picDisplay.Height / 2,
+                });
+
+            emitter.gravityPoints.Add(
+                new GravityPoint
+                {
+                    X = picDisplay.Width / 2 - 100,
+                    Y = picDisplay.Height / 2,
+                });
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -65,6 +79,17 @@ namespace SixthLabWorkApp
         {
             emitter.Direction = tbDirection.Value;
             lblDirection.Text = $"{tbDirection.Value}";
+        }
+
+        private void tbGraviton_Scroll(object sender, EventArgs e)
+        {
+            foreach (var p in emitter.gravityPoints)
+            {
+                if (p is GravityPoint)
+                {
+                    (p as GravityPoint).Power = tbGraviton.Value;
+                }
+            }
         }
     }
 }

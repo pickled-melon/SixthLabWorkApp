@@ -34,8 +34,10 @@
             this.tbDirection = new System.Windows.Forms.TrackBar();
             this.lblDirPurpose = new System.Windows.Forms.Label();
             this.lblDirection = new System.Windows.Forms.Label();
+            this.tbGraviton = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).BeginInit();
             this.SuspendLayout();
             // 
             // picDisplay
@@ -81,11 +83,21 @@
             this.lblDirection.TabIndex = 3;
             this.lblDirection.Text = "0";
             // 
+            // tbGraviton
+            // 
+            this.tbGraviton.Location = new System.Drawing.Point(251, 500);
+            this.tbGraviton.Maximum = 100;
+            this.tbGraviton.Name = "tbGraviton";
+            this.tbGraviton.Size = new System.Drawing.Size(186, 56);
+            this.tbGraviton.TabIndex = 4;
+            this.tbGraviton.Scroll += new System.EventHandler(this.tbGraviton_Scroll);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 568);
+            this.Controls.Add(this.tbGraviton);
             this.Controls.Add(this.lblDirection);
             this.Controls.Add(this.lblDirPurpose);
             this.Controls.Add(this.tbDirection);
@@ -94,6 +106,7 @@
             this.Text = "Обработка событий";
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -106,6 +119,7 @@
         private System.Windows.Forms.TrackBar tbDirection;
         private System.Windows.Forms.Label lblDirPurpose;
         private System.Windows.Forms.Label lblDirection;
+        private System.Windows.Forms.TrackBar tbGraviton;
     }
 }
 
