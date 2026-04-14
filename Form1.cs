@@ -16,6 +16,9 @@ namespace SixthLabWorkApp
 
         Emitter emitter;
 
+        GravityPoint point1;
+        GravityPoint point2;
+
         public Form1()
         {
             InitializeComponent();
@@ -38,19 +41,20 @@ namespace SixthLabWorkApp
 
             emitters.Add(this.emitter);
 
-            emitter.gravityPoints.Add(
-                new GravityPoint
-                {
-                    X = picDisplay.Width / 2 + 100,
-                    Y = picDisplay.Height / 2,
-                });
+            point1 = new GravityPoint
+            {
+                X = picDisplay.Width / 2 + 100,
+                Y = picDisplay.Height / 2,
+            };
 
-            emitter.gravityPoints.Add(
-                new GravityPoint
-                {
-                    X = picDisplay.Width / 2 - 100,
-                    Y = picDisplay.Height / 2,
-                });
+            point2 = new GravityPoint
+            {
+                X = picDisplay.Width / 2 - 100,
+                Y = picDisplay.Height / 2,
+            };
+
+            emitter.gravityPoints.Add(point1);
+            emitter.gravityPoints.Add(point2);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -67,12 +71,18 @@ namespace SixthLabWorkApp
             picDisplay.Invalidate();
         }
 
-        
+
 
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-           emitter.MousePositionX = e.X;
-           emitter.MousePositionY = e.Y;
+            foreach (var emitter in emitters)
+            {
+                emitter.MousePositionX = e.X;
+                emitter.MousePositionY = e.Y;
+            }
+
+            point2.X = e.X;
+            point2.Y = e.Y;
         }
 
         private void tbDirection_Scroll(object sender, EventArgs e)
@@ -83,13 +93,12 @@ namespace SixthLabWorkApp
 
         private void tbGraviton_Scroll(object sender, EventArgs e)
         {
-            foreach (var p in emitter.gravityPoints)
-            {
-                if (p is GravityPoint)
-                {
-                    (p as GravityPoint).Power = tbGraviton.Value;
-                }
-            }
+            point1.Power = tbGraviton.Value;
+        }
+
+        private void tbGraviton2_Scroll(object sender, EventArgs e)
+        {
+            point2.Power = tbGraviton2.Value;
         }
     }
 }

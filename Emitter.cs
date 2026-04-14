@@ -13,7 +13,6 @@ namespace SixthLabWorkApp
 
         public List<IImpactPoint> gravityPoints = new List<IImpactPoint>();
 
-        //TODO: Управляем эмттером
         public int X;
         public int Y;
         
@@ -24,7 +23,7 @@ namespace SixthLabWorkApp
         public int SpeedMax = 10;
 
         public int RadiusMin = 2;
-        public int RadiusMax = 10;
+        public int RadiusMax = 2;
         
         public int LifeMin = 20;
         public int LifeMax = 100;
@@ -34,7 +33,7 @@ namespace SixthLabWorkApp
 
         public int ParticlesPerTick = 1;
 
-        public int ParticlesCount = 500;
+        public int ParticlesCount = 50000;
 
         public int MousePositionX;
         public int MousePositionY;
@@ -58,6 +57,10 @@ namespace SixthLabWorkApp
 
             foreach (var particle in particles)
             {
+
+                particle.X += particle.SpeedX;
+                particle.Y += particle.SpeedY;
+
                 particle.Life -= 1;
 
                 if (particle.Life <= 0)
@@ -73,9 +76,6 @@ namespace SixthLabWorkApp
 
                 particle.SpeedX += GravitationX;
                 particle.SpeedY += GravitationY;
-
-                particle.X += particle.SpeedX;
-                particle.Y += particle.SpeedY;
             }
 
             while (particlesToCreate >= 1)

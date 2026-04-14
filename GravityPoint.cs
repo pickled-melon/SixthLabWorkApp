@@ -30,6 +30,32 @@ namespace SixthLabWorkApp
                Power,
                Power
                );
+
+            var stringFormat = new StringFormat();
+            stringFormat.Alignment = StringAlignment.Center;
+            stringFormat.LineAlignment = StringAlignment.Center;
+
+            var text = $"Я гравитон\nс силой {Power}";
+            var font = new Font("Verdana", 10);
+
+            var size = g.MeasureString(text, font);
+
+            g.FillRectangle(
+                new SolidBrush(Color.Red),
+                X - size.Width / 2,
+                Y - size.Height / 2,
+                size.Width,
+                size.Height
+                );
+
+            g.DrawString(
+                text,
+                font,
+                new SolidBrush(Color.White),
+                X,
+                Y,
+                stringFormat
+                );
         }
     }
 }
