@@ -23,7 +23,7 @@ namespace SixthLabWorkApp
         public int SpeedMax = 10;
 
         public int RadiusMin = 2;
-        public int RadiusMax = 2;
+        public int RadiusMax = 10;
         
         public int LifeMin = 20;
         public int LifeMax = 100;
