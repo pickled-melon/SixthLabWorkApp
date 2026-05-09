@@ -130,6 +130,7 @@
             this.btnStartStop.TabIndex = 7;
             this.btnStartStop.Text = "Запуск/Остановка";
             this.btnStartStop.UseVisualStyleBackColor = true;
+            this.btnStartStop.Click += new System.EventHandler(this.btnStartStop_Click);
             // 
             // btnStepFrwd
             // 

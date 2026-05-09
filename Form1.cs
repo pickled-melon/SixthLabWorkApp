@@ -19,6 +19,8 @@ namespace SixthLabWorkApp
         GravityPoint point1;
         GravityPoint point2;
 
+        bool isSimLaunched = true;
+
         public Form1()
         {
             InitializeComponent();
@@ -59,7 +61,8 @@ namespace SixthLabWorkApp
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            emitter.UpdateState();
+            if (isSimLaunched)
+                emitter.UpdateState();
 
             using (Graphics g = Graphics.FromImage(picDisplay.Image))
             {
@@ -104,6 +107,18 @@ namespace SixthLabWorkApp
         private void chkBoxDebug_CheckedChanged(object sender, EventArgs e)
         {
             picDisplay.Invalidate();
+        }
+
+        private void btnStartStop_Click(object sender, EventArgs e)
+        {
+            isSimLaunched = !isSimLaunched;
+
+            //timer1.Enabled = isSimLaunched;
+
+            if (isSimLaunched)
+                btnStartStop.Text = "Остановить";
+            else
+                btnStartStop.Text = "Запустить";
         }
     }
 }
