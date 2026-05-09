@@ -21,6 +21,8 @@ namespace SixthLabWorkApp
 
         bool isSimLaunched = true;
 
+        Particle pointedParticle = null;
+
         public Form1()
         {
             InitializeComponent();
@@ -63,6 +65,9 @@ namespace SixthLabWorkApp
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (emitter == null || picDisplay.Image == null)
+                return;
+
             if (isSimLaunched)
                 emitter.UpdateState();
 
@@ -71,6 +76,24 @@ namespace SixthLabWorkApp
                 g.Clear(Color.Black);
 
                 emitter.Render(g, chkBoxDebug.Checked);
+
+                if (pointedParticle != null) { 
+                    string memoText = $"X: {pointedParticle.X}\nY: {pointedParticle.Y}\nЖизнь: {pointedParticle.Life}";
+
+                    Font font = new Font("Arial", 8);
+                    var textSize = g.MeasureString(memoText, font);
+
+                    float rectX = pointedParticle.X + pointedParticle.Radius + 5;
+                    float rectY = pointedParticle.Y - textSize.Height / 2;
+
+                    var rect = new RectangleF(rectX, rectY, textSize.Width, textSize.Height);
+
+                    g.FillRectangle(new SolidBrush(Color.White), rect);
+
+                    g.DrawRectangle(Pens.Black, rect.X, rect.Y, rect.Width, rect.Height);
+
+                    g.DrawString(memoText, font, Brushes.Black, rectX, rectY);
+                }
             }
 
             picDisplay.Invalidate();
@@ -88,6 +111,19 @@ namespace SixthLabWorkApp
 
             point2.X = e.X;
             point2.Y = e.Y;
+
+            pointedParticle = null;
+            foreach (var particle in emitter.particles)
+            {
+                float dx = e.X - particle.X;
+                float dy = e.Y - particle.Y;
+
+                if (dx * dx + dy * dy <= (particle.Radius + 5) * (particle.Radius + 5))
+                {
+                    pointedParticle = particle;
+                    break;
+                }
+            }
         }
 
         private void tbDirection_Scroll(object sender, EventArgs e)
