@@ -126,20 +126,22 @@
             // 
             this.btnStartStop.Location = new System.Drawing.Point(807, 412);
             this.btnStartStop.Name = "btnStartStop";
-            this.btnStartStop.Size = new System.Drawing.Size(153, 38);
+            this.btnStartStop.Size = new System.Drawing.Size(212, 38);
             this.btnStartStop.TabIndex = 7;
-            this.btnStartStop.Text = "Запуск/Остановка";
+            this.btnStartStop.Text = "Остановить";
             this.btnStartStop.UseVisualStyleBackColor = true;
             this.btnStartStop.Click += new System.EventHandler(this.btnStartStop_Click);
             // 
             // btnStepFrwd
             // 
+            this.btnStepFrwd.Enabled = false;
             this.btnStepFrwd.Location = new System.Drawing.Point(810, 368);
             this.btnStepFrwd.Name = "btnStepFrwd";
-            this.btnStepFrwd.Size = new System.Drawing.Size(153, 38);
+            this.btnStepFrwd.Size = new System.Drawing.Size(209, 38);
             this.btnStepFrwd.TabIndex = 8;
-            this.btnStepFrwd.Text = "Шаг вперёд";
+            this.btnStepFrwd.Text = "Сделать шаг вперёд";
             this.btnStepFrwd.UseVisualStyleBackColor = true;
+            this.btnStepFrwd.Click += new System.EventHandler(this.btnStepFrwd_Click);
             // 
             // tbSimSpeed
             // 
@@ -164,7 +166,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(975, 568);
+            this.ClientSize = new System.Drawing.Size(1031, 568);
             this.Controls.Add(this.lblSimSpeed);
             this.Controls.Add(this.tbSimSpeed);
             this.Controls.Add(this.btnStepFrwd);

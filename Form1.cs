@@ -116,9 +116,32 @@ namespace SixthLabWorkApp
             //timer1.Enabled = isSimLaunched;
 
             if (isSimLaunched)
+            {
                 btnStartStop.Text = "Остановить";
+                btnStepFrwd.Enabled = false;
+            }
             else
+            {
                 btnStartStop.Text = "Запустить";
+                btnStepFrwd.Enabled = true;
+            }
+                
+        }
+
+        private void btnStepFrwd_Click(object sender, EventArgs e)
+        {
+            if (!isSimLaunched)
+            {
+                emitter.UpdateState();
+
+                using (Graphics g = Graphics.FromImage(picDisplay.Image))
+                {
+                    g.Clear(Color.Black);
+                    emitter.Render(g, chkBoxDebug.Checked);
+                }
+
+                picDisplay.Invalidate();
+            }
         }
     }
 }
