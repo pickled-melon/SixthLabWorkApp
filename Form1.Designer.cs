@@ -152,6 +152,7 @@
             this.tbSimSpeed.Size = new System.Drawing.Size(140, 56);
             this.tbSimSpeed.TabIndex = 9;
             this.tbSimSpeed.Value = 10;
+            this.tbSimSpeed.Scroll += new System.EventHandler(this.tbSimSpeed_Scroll);
             // 
             // lblSimSpeed
             // 

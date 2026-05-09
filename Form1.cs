@@ -57,6 +57,8 @@ namespace SixthLabWorkApp
 
             emitter.gravityPoints.Add(point1);
             emitter.gravityPoints.Add(point2);
+
+            tbSimSpeed.Value = timer1.Interval;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -142,6 +144,11 @@ namespace SixthLabWorkApp
 
                 picDisplay.Invalidate();
             }
+        }
+
+        private void tbSimSpeed_Scroll(object sender, EventArgs e)
+        {
+            timer1.Interval = tbSimSpeed.Maximum + tbSimSpeed.Minimum - tbSimSpeed.Value;
         }
     }
 }
