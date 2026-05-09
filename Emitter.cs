@@ -90,11 +90,14 @@ namespace SixthLabWorkApp
             }
         }
 
-        public void Render(Graphics g)
+        public void Render(Graphics g, bool debugMode = false)
         {
             foreach (var particle in particles)
             {
                 particle.Draw(g);
+
+                if (debugMode)
+                    particle.DrawSpeedVector(g);
             }
 
             foreach (var point in gravityPoints)

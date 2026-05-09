@@ -36,10 +36,16 @@
             this.lblDirection = new System.Windows.Forms.Label();
             this.tbGraviton = new System.Windows.Forms.TrackBar();
             this.tbGraviton2 = new System.Windows.Forms.TrackBar();
+            this.chkBoxDebug = new System.Windows.Forms.CheckBox();
+            this.btnStartStop = new System.Windows.Forms.Button();
+            this.btnStepFrwd = new System.Windows.Forms.Button();
+            this.tbSimSpeed = new System.Windows.Forms.TrackBar();
+            this.lblSimSpeed = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSimSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // picDisplay
@@ -105,11 +111,64 @@
             this.tbGraviton2.Value = 100;
             this.tbGraviton2.Scroll += new System.EventHandler(this.tbGraviton2_Scroll);
             // 
+            // chkBoxDebug
+            // 
+            this.chkBoxDebug.AutoSize = true;
+            this.chkBoxDebug.Location = new System.Drawing.Point(807, 12);
+            this.chkBoxDebug.Name = "chkBoxDebug";
+            this.chkBoxDebug.Size = new System.Drawing.Size(129, 20);
+            this.chkBoxDebug.TabIndex = 6;
+            this.chkBoxDebug.Text = "Режим отладки";
+            this.chkBoxDebug.UseVisualStyleBackColor = true;
+            this.chkBoxDebug.CheckedChanged += new System.EventHandler(this.chkBoxDebug_CheckedChanged);
+            // 
+            // btnStartStop
+            // 
+            this.btnStartStop.Location = new System.Drawing.Point(807, 412);
+            this.btnStartStop.Name = "btnStartStop";
+            this.btnStartStop.Size = new System.Drawing.Size(153, 38);
+            this.btnStartStop.TabIndex = 7;
+            this.btnStartStop.Text = "Запуск/Остановка";
+            this.btnStartStop.UseVisualStyleBackColor = true;
+            // 
+            // btnStepFrwd
+            // 
+            this.btnStepFrwd.Location = new System.Drawing.Point(810, 368);
+            this.btnStepFrwd.Name = "btnStepFrwd";
+            this.btnStepFrwd.Size = new System.Drawing.Size(153, 38);
+            this.btnStepFrwd.TabIndex = 8;
+            this.btnStepFrwd.Text = "Шаг вперёд";
+            this.btnStepFrwd.UseVisualStyleBackColor = true;
+            // 
+            // tbSimSpeed
+            // 
+            this.tbSimSpeed.Location = new System.Drawing.Point(806, 72);
+            this.tbSimSpeed.Maximum = 200;
+            this.tbSimSpeed.Minimum = 10;
+            this.tbSimSpeed.Name = "tbSimSpeed";
+            this.tbSimSpeed.Size = new System.Drawing.Size(140, 56);
+            this.tbSimSpeed.TabIndex = 9;
+            this.tbSimSpeed.Value = 10;
+            // 
+            // lblSimSpeed
+            // 
+            this.lblSimSpeed.AutoSize = true;
+            this.lblSimSpeed.Location = new System.Drawing.Point(804, 44);
+            this.lblSimSpeed.Name = "lblSimSpeed";
+            this.lblSimSpeed.Size = new System.Drawing.Size(142, 16);
+            this.lblSimSpeed.TabIndex = 10;
+            this.lblSimSpeed.Text = "Скорость симуляции";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 568);
+            this.ClientSize = new System.Drawing.Size(975, 568);
+            this.Controls.Add(this.lblSimSpeed);
+            this.Controls.Add(this.tbSimSpeed);
+            this.Controls.Add(this.btnStepFrwd);
+            this.Controls.Add(this.btnStartStop);
+            this.Controls.Add(this.chkBoxDebug);
             this.Controls.Add(this.tbGraviton2);
             this.Controls.Add(this.tbGraviton);
             this.Controls.Add(this.lblDirection);
@@ -122,6 +181,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSimSpeed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,6 +196,11 @@
         private System.Windows.Forms.Label lblDirection;
         private System.Windows.Forms.TrackBar tbGraviton;
         private System.Windows.Forms.TrackBar tbGraviton2;
+        private System.Windows.Forms.CheckBox chkBoxDebug;
+        private System.Windows.Forms.Button btnStartStop;
+        private System.Windows.Forms.Button btnStepFrwd;
+        private System.Windows.Forms.TrackBar tbSimSpeed;
+        private System.Windows.Forms.Label lblSimSpeed;
     }
 }
 

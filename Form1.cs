@@ -65,7 +65,7 @@ namespace SixthLabWorkApp
             {
                 g.Clear(Color.Black);
 
-                emitter.Render(g);
+                emitter.Render(g, chkBoxDebug.Checked);
             }
 
             picDisplay.Invalidate();
@@ -99,6 +99,11 @@ namespace SixthLabWorkApp
         private void tbGraviton2_Scroll(object sender, EventArgs e)
         {
             point2.Power = tbGraviton2.Value;
+        }
+
+        private void chkBoxDebug_CheckedChanged(object sender, EventArgs e)
+        {
+            picDisplay.Invalidate();
         }
     }
 }

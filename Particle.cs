@@ -42,6 +42,25 @@ namespace SixthLabWorkApp
 
             brush.Dispose();
         }
+
+        public virtual void DrawSpeedVector(Graphics g)
+        {
+            float length = (float)Math.Sqrt(SpeedX * SpeedX + SpeedY * SpeedY);
+
+            if (length < 0.001f)
+                return;
+
+            float dirX = SpeedX / length;
+            float dirY = SpeedY / length;
+
+            float endX = X + dirX * Radius;
+            float endY = Y + dirY * Radius;
+
+            using (Pen pen = new Pen(Color.LimeGreen, 2))
+            {
+                g.DrawLine(pen, X, Y, endX, endY);
+            }
+        }
     }
 
     public class ParticleColorful : Particle
